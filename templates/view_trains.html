@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Trains</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Available Trains</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Train Name</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Departure Time</th>
+                <th>Available Seats</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for train in trains %}
+            <tr>
+                <td>{{ train.name }}</td>
+                <td>{{ train.from_station }}</td>
+                <td>{{ train.to_station }}</td>
+                <td>{{ train.depart_time }}</td>
+                <td>{{ train.available_seats }}</td>
+                <td>
+                    {% if session.get('user_id') %}
+                        <!-- If the user is logged in -->
+                        <a href="{{ url_for('reserve', train_id=train.train_id) }}" class="btn">Reserve Seats</a>
+                    {% else %}
+                        <span>Please log in to reserve seats.</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

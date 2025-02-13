@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to the Railway Reservation System</h1>
+    
+    {% if logged_in %}
+        <h2>Welcome, {{ user_name }}!</h2>
+        <div class="buttons">
+            <a href="{{ url_for('search') }}" class="btn">Search Trains</a>
+            <a href="{{ url_for('view_trains') }}" class="btn">View Trains</a>
+            <a href="{{ url_for('reserved_seats') }}" class="btn">View Reserved Seats</a>
+            <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+        </div>
+    {% else %}
+        <h2>You are not logged in.</h2>
+        <div class="buttons">
+            <a href="{{ url_for('login') }}" class="btn">Login</a>
+            <a href="{{ url_for('register') }}" class="btn">Register</a>
+        </div>
+    {% endif %}
+</body>
+</html>

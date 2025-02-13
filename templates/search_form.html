@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Trains</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Search for Trains</h1>
+    <form action="{{ url_for('search') }}" method="POST">
+        <label for="from_station">From Station:</label>
+        <input type="text" name="from_station" required><br><br>
+
+        <label for="to_station">To Station:</label>
+        <input type="text" name="to_station" required><br><br>
+
+        <button type="submit" class="btn">Search</button>
+    </form>
+</body>
+</html>

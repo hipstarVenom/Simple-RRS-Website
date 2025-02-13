@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Available Trains</h1>
+
+    {% if trains %}
+        <table>
+            <tr>
+                <th>Train Name</th>
+                <th>From Station</th>
+                <th>To Station</th>
+                <th>Departure Time</th>
+                <th>Available Seats</th>
+                <th>Amount per Seat</th>
+                <th>Action</th>
+            </tr>
+            {% for train in trains %}
+            <tr>
+                <td>{{ train.name }}</td>
+                <td>{{ train.from_station }}</td>
+                <td>{{ train.to_station }}</td>
+                <td>{{ train.depart_time }}</td>
+                <td>{{ train.available_seats }}</td>
+                <td>{{ train.amount_per_seat }}</td>
+                <td><a href="{{ url_for('reserve', train_id=train.train_id) }}" class="btn">Reserve</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No trains found for the selected route.</p>
+    {% endif %}
+</body>
+</html>

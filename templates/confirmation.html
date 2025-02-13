@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Confirmation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Booking Confirmed!</h1>
+    <h2>Thank you for your reservation.</h2>
+    
+    <h3>Booking Details:</h3>
+    <p><strong>Train Name:</strong> {{ train.name }}</p>
+    <p><strong>From:</strong> {{ train.from_station }} <strong>To:</strong> {{ train.to_station }}</p>
+    <p><strong>Departure Time:</strong> {{ train.depart_time }}</p>
+    <p><strong>Number of Seats:</strong> {{ seats }}</p>
+    <p><strong>Total Amount:</strong> ₹{{ total_amount }}</p>
+    <p><strong>Booking Status:</strong> {{ status }}</p>  <!-- Display the booking status here -->
+
+    <br>
+    <a href="{{ url_for('home') }}" class="btn">Back to Home</a>
+</body>
+</html>

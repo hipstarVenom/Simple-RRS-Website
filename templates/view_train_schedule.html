@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Train Schedule</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('admin_dashboard') }}">Home</a>
+        <a href="{{ url_for('view_users') }}">View Users</a>
+        <a href="{{ url_for('view_train_schedule') }}">View Train Schedule</a>
+        <a href="{{ url_for('add_train') }}">Add Train</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <div class="container">
+        <h1>Train Schedule</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Train Name</th>
+                    <th>From Station</th>
+                    <th>To Station</th>
+                    <th>Departure Time</th>
+                    <th>Available Seats</th>
+                    <th>Price Per Seat</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for train in trains %}
+                <tr>
+                    <td>{{ train[1] }}</td>
+                    <td>{{ train[2] }}</td>
+                    <td>{{ train[3] }}</td>
+                    <td>{{ train[4] }}</td>
+                    <td>{{ train[5] }}</td>
+                    <td>{{ train[6] }}</td>
+                    <td>
+                        <a href="{{ url_for('delete_train', train_id=train[0]) }}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

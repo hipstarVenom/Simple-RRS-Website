@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reservations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Your Reserved Seats</h2>
+
+    {% if reservations %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Train Name</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Seats Reserved</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.train_name }}</td>
+                        <td>{{ reservation.from }}</td>
+                        <td>{{ reservation.to }}</td>
+                        <td>{{ reservation.no_of_seats }}</td>
+                        <td>{{ reservation.status }}</td>
+                        <td>    {% if reservation.status !='Cancelled'%}
+                                <form action="{{ url_for('cancel_reservation', booking_id=reservation.book_id) }}" method="POST">
+                                    <button type="submit">Cancel Reservation</button>
+                                </form>
+                                {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You have no reservations.</p>
+    {% endif %}
+    
+</body>
+</html>
+
