@@ -25,8 +25,8 @@
                 {% for reservation in reservations %}
                     <tr>
                         <td>{{ reservation.train_name }}</td>
-                        <td>{{ reservation.from }}</td>
-                        <td>{{ reservation.to }}</td>
+                        <td>{{ reservation.from_station }}</td>
+                        <td>{{ reservation.to_station }}</td>
                         <td>{{ reservation.no_of_seats }}</td>
                         <td>{{ reservation.status }}</td>
                         <td>    {% if reservation.status !='Cancelled'%}
@@ -42,7 +42,7 @@
     {% else %}
         <p>You have no reservations.</p>
     {% endif %}
-    
+    <a href="{{ url_for('home') }}" class="btn">Back to Home</a>
 </body>
 </html>
 
